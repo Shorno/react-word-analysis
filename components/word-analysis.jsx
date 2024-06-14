@@ -4,14 +4,12 @@ import Warning from "./Warning.jsx";
 export default function WordAnalysis() {
 
     const [text, setText] = useState("");
-    // const [warning, setWarning] = useState(false)
     const [warningText, setWarningText] = useState("")
 
-    const countWords = () => {
-        const words = text.split(" ");
-        return words.length
-    }
-    console.log(countWords())
+    const numberOfChar = text.length;
+    const instaCharLeft = 280 - numberOfChar;
+    const fbCharLeft = 2200 - numberOfChar;
+    const numberOfWords =  text.split(" ").filter((word) => word !== "").length;
 
     const handleChange = (event) => {
         let newText = event.target.value;
@@ -43,19 +41,24 @@ export default function WordAnalysis() {
                 />
                 { <Warning warningText={warningText} />}
                 <div className={"w-1/3 flex flex-col"}>
-                    <div
-                        className={"flex items-center justify-center h-1/2 w-full bg-pink-300 text-3xl font-semibold"}>Words
+                    <div className={"flex flex-col items-center justify-center h-1/2 w-full bg-pink-300 text-2xl font-semibold"}>
+                        <h1 className={"text-6xl text-white"}>{numberOfWords}</h1>
+                        <h1 className={"uppercase text-gray-500"}>Words</h1>
                     </div>
-                    <div
-                        className={"flex items-center justify-center h-1/2 w-full bg-gray-600 text-3xl font-semibold"}>Facebook
+                    <div className={"flex flex-col items-center justify-center h-1/2 w-full bg-gray-600 text-2xl font-semibold"}>
+                        <h1 className={`text-6xl text-white} ${fbCharLeft < 0 ? "text-red-500" : ""}`}>{fbCharLeft}</h1>
+                        <h1 className={"uppercase text-gray-500"}>Facebook</h1>
                     </div>
                 </div>
                 <div className={"w-1/3 flex flex-col"}>
-                    <div
-                        className={"flex items-center justify-center h-1/2 w-full bg-blue-400 text-3xl font-semibold"}>Char
+                    <div className={"flex flex-col items-center justify-center h-1/2 w-full bg-blue-400 text-2xl font-semibold"}>
+                        <h1 className={"text-6xl text-white"}>{numberOfChar}</h1>
+                        <h1 className={"uppercase text-gray-500"}>Char</h1>
                     </div>
                     <div
-                        className={"flex items-center justify-center h-1/2 w-full bg-lime-500 text-3xl font-semibold"}>X
+                        className={"flex flex-col items-center justify-center h-1/2 w-full bg-lime-500 text-2xl font-semibold"}>
+                        <h1 className={`text-6xl text-white} ${instaCharLeft < 0 ? "text-red-500" : ""}`}>{instaCharLeft}</h1>
+                        <h1 className={"uppercase text-gray-500"}>Instagram</h1>
                     </div>
                 </div>
             </div>
